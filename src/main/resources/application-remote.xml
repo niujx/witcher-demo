@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <dubbo:application name="witcher-application"/>
+
+    <!--<dubbo:annotation package="com.crock.proxy.remote"/>-->
+
+    <context:property-placeholder location="conf.properties"/>
+
+    <dubbo:protocol name="dubbo" port="10800"/>
+
+    <dubbo:registry address="${zookeeper.address}"/>
+
+    <bean id="proxyFactory" class="com.crock.proxy.remote.ProxyFactoryFacade" init-method="init"/>
+
+    <dubbo:service interface="com.crock.proxy.remote.IProxyFactoryFacade" ref="proxyFactory"/>
+
+
+</beans>
