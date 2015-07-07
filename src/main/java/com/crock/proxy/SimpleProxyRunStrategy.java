@@ -31,7 +31,7 @@ public class SimpleProxyRunStrategy implements ProxyRunStrategy {
 
         double workingInterval = currentUseTime * WORKING_INTERVAL;
         double workCount = proxy.getUseCount() * WORK_CONCURRENT_COUNT_WEIGHT;
-        double reqTime = proxy.getMs()/500 * REQ_TIME_WEIGHT;
+        double reqTime = proxy.getMs()/(double)500 * REQ_TIME_WEIGHT;
         // double health = proxy.getHealth() * HEALTH_WEIGHT;
 
         double nice = workingInterval + workCount + reqTime;

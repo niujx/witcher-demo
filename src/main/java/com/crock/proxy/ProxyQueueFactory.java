@@ -39,6 +39,7 @@ public class ProxyQueueFactory {
         Preconditions.checkNotNull(hostToken, "hostToken is not null");
         IProxyQueue proxyQueue = proxyFactoryCache.get(hostToken.getToken());
         if (proxyQueue == null) {
+            logger.info("create new queue");
             proxyQueue = new BasicProxyQueue(hostToken.getProxyConfig());
             IProxyQueue tmp = proxyFactoryCache.putIfAbsent(hostToken.getToken(), proxyQueue);
             if (tmp != null) {

@@ -137,7 +137,7 @@ public class Proxy implements Comparable, Serializable, Cloneable {
     protected Proxy clone() {
         try {
             Proxy p = (Proxy) super.clone();
-            p.host = new String(this.host);
+            p.host = String.valueOf(this.host);
             p.isTemp = true;
             return p;
         } catch (CloneNotSupportedException e) {

@@ -24,8 +24,8 @@ public class BasicProxyQueue implements IProxyQueue, IQueueWatcher {
     private ProxyRunStrategy proxyRunStrategy;
     private List<Proxy> usedCache = Lists.newCopyOnWriteArrayList();
     private Random random = new Random(74);
-    private static final  long EXPIRED_TIME = 5L*60*1000;
-   // private static final  long EXPIRED_TIME = 10;
+    private static final long EXPIRED_TIME = 5L * 60 * 1000;
+    // private static final  long EXPIRED_TIME = 10;
 
     public BasicProxyQueue(ProxyConfig proxyConfig) {
 
@@ -98,7 +98,7 @@ public class BasicProxyQueue implements IProxyQueue, IQueueWatcher {
                 logger.debug("release proxy :" + proxy);
             }
 
-            if(proxy.isTemp() || proxyQueue.contains(proxy)) return true;
+            if (proxy.isTemp() || proxyQueue.contains(proxy)) return true;
             proxy.setLastUseTime(System.currentTimeMillis());
             usedCache.remove(proxy);
             return proxyQueue.add(proxy);
@@ -128,7 +128,7 @@ public class BasicProxyQueue implements IProxyQueue, IQueueWatcher {
 
     @Override
     public boolean hasProxies() {
-        return proxyQueue!=null;
+        return proxyQueue != null;
     }
 
     @Override
